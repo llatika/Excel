@@ -1,54 +1,71 @@
 
 #include <iostream>
+#include "Methods.h"
 using namespace std;
-class Methods {
 
 
-	int n = 12;
-	int m = 10;
-	int** tab;
 
-public:Methods()
+Methods::Methods()
 {
+	n = 10;
+	m = 10;
 	tab = new int* [m];
-	Display();
-};
+	for (int i = 0; i < m; i++)
+	{
+		tab[i] = new int[n];
 
-public:
-	void Add(int a, int b, int d)
-	{
-		tab[a][b] == d;
-	}
-	void Substract(int a, int b)
-	{
-		tab[a][b] == NULL;
-	}
-	void Display()
-	{
-		for (int i = 0; i < m; i++)
+		for (int j = 0; j < n; j++)
 		{
-			tab[i] = new int[n];
-			for (int j = 0; j < n; j++)
-			{
-				tab[i][j] = 0;
-			}
-
+			tab[i][j] = 0;
 		}
-		for (int i = 0; i < m; i++)
-		{
-			for (int j = 0; j < n; j++)
-			{
-				std::cout << tab[i][j];
-			}
-
-			std::cout << endl;
-
-		}
-
-		for (int i = 0; i < m; i++)
-			delete[] tab[i];
-		delete[] tab;
 	}
-
 };
+void Methods::changeSize(int columns, int rows)
+{
+
+	for (int i = 0; i < rows; i++)
+	{
+		tab[i] = new int[columns];
+		std::cout << endl;
+	}
+	std::cout << endl;
+}
+Methods::~Methods()
+{
+	for (int i = 0; i < m; i++)
+	{
+		delete[] tab[i];
+	}
+	delete[] tab;
+}
+
+void Methods::set(int a, int b, int d) {
+
+	tab[a][b] = d;
+}
+void Methods::unset(int a, int b)
+{
+	tab[a][b] = 0;
+}
+void Methods::display()
+{
+	
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			std::cout << tab[i][j] << " ";
+		}
+		std::cout << endl;
+	}
+	std::cout<<endl;
+}
+void Methods::swap(int a, int b, int c, int d)
+{
+	int r = tab[a][b];
+	tab[a][b] = tab[c][d];
+	tab[c][d] = r;
+	std::cout << endl;
+}
+
 
